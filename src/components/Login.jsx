@@ -19,6 +19,11 @@ const Login = () => {
         username, 
         password 
       })
+      
+      if (!response.data.token) {
+        throw new Error("No token received from server")
+      }
+      
       login(response.data.token)
       history.push("/")
     } catch (error) {
