@@ -82,7 +82,7 @@ const Tweet = ({ tweet, onUpdate }) => {
         fetchOriginalTweet()
       }
     } catch (error) {
-      console.error("Failed to like/unlike tweet:", error)
+      console.error("Failed to like/dislike tweet:", error)
     }
   }
 
@@ -158,8 +158,8 @@ const Tweet = ({ tweet, onUpdate }) => {
     }
   }
 
-  const isLiked = tweet.likes?.some(like => like.user === user?.id)
-  const isRetweeted = tweet.retweets?.some(retweet => retweet.user === user?.id)
+  const isLiked = tweet.likes?.some(like => like.user.id === user?.id)
+  const isRetweeted = tweet.retweets?.some(retweet => retweet.user.id === user?.id)
 
   return (
     <div className="border-b border-gray-200 p-4">
@@ -242,7 +242,7 @@ const Tweet = ({ tweet, onUpdate }) => {
           originalTweet ? (
             <>
               <button onClick={() => handleLike(originalTweet.id)}>
-                {originalTweet.likes?.some(like => like.user === user?.id) ? 'Unlike' : 'Like'} 
+                {originalTweet.likes?.some(like => like.user.id === user?.id) ? 'Dislike' : 'Like'} 
                 ({originalTweet.likes?.length || 0})
               </button>
               <button onClick={() => setShowCommentBox(!showCommentBox)}>
@@ -250,7 +250,7 @@ const Tweet = ({ tweet, onUpdate }) => {
               </button>
               {!isOwner && (
                 <button onClick={() => setShowRetweetPopup(true)}>
-                  {originalTweet.retweets?.some(retweet => retweet.user === user?.id) ? 'Undo Retweet' : 'Retweet'}
+                  {originalTweet.retweets?.some(retweet => retweet.user.id === user?.id) ? 'Undo Retweet' : 'Retweet'}
                 </button>
               )}
             </>
@@ -260,7 +260,7 @@ const Tweet = ({ tweet, onUpdate }) => {
         ) : (
           <>
             <button onClick={() => handleLike(tweet.id)}>
-              {isLiked ? 'Unlike' : 'Like'} ({tweet.likes?.length || 0})
+              {isLiked ? 'Dislike' : 'Like'} ({tweet.likes?.length || 0})
             </button>
             <button onClick={() => setShowCommentBox(!showCommentBox)}>
               Comment ({tweet.comments?.length || 0})
