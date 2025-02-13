@@ -3,6 +3,8 @@
 ## 📝 Overview
 A Twitter clone frontend application built with React and modern web technologies, implementing core Twitter functionalities with a clean and responsive UI.
 
+![Twitter Lite Desktop and Mobile View](./public/example.png)
+
 ### 🛠️ Tech Stack
 - **React** 19.0.0
 - **Vite** 6.1.0 - Next Generation Frontend Tooling
